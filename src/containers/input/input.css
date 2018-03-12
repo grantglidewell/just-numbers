@@ -1,0 +1,74 @@
+.wrapper {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: center;
+      justify-content: center;
+}
+input[type=number] {
+  height:10vh;
+  width:30vw;
+  font-size: 3em;
+  outline: none;
+  border: none;
+  background-image: -webkit-gradient(linear, left bottom, left top, from(#accbee), to(#e7f0fd));
+  background-image: -webkit-linear-gradient(bottom, #accbee 0%, #e7f0fd 100%);
+  background-image: -o-linear-gradient(bottom, #accbee 0%, #e7f0fd 100%);
+  background-image: linear-gradient(to top, #accbee 0%, #e7f0fd 100%);
+  text-align: center;
+  margin: 0; 
+  padding: 0;
+}
+.stack {
+  display:-ms-flexbox;
+  display:flex;
+  -ms-flex-direction: column;
+      flex-direction: column;
+  -ms-flex-pack: center;
+      justify-content: center;
+}
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+  -webkit-appearance: none; 
+}
+input[type=button]{
+  border: none;
+  outline: none;
+  padding: 0;
+  margin: 0;
+}
+.hover:hover {
+  color: white;
+  font-size: 1.3em;
+  -webkit-transition: ease all .2s;
+  -o-transition: ease all .2s;
+  transition: ease all .2s
+}
+.incButton {
+  background-color: lightgray;
+  color: black;
+  -ms-flex-item-align: end;
+      align-self: flex-end;
+  border-radius: 7px 0 0 0;
+  height: 5vh;
+  width: 10vw
+}
+.decButton {
+  background-color: darkgray;
+  color: black;
+  -ms-flex-item-align: end;
+      align-self: flex-end;
+  border-radius: 0 0 0 7px;
+  height: 5vh;
+  width: 10vw
+}
+.subButton {
+  background-color: #444;
+  color: white;
+  border-radius: 0 7px 7px 0;
+  height: 10vh;
+  width: 10vw
+}
+input:focus {
+  outline: none;
+}
+
