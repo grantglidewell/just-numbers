@@ -2,7 +2,8 @@ const initialState = {
   results: [1, 2, 3],
   goal: false,
   name: 'string',
-  newNumber: 500
+  diff: 50,
+  number: 500
 }
 
 export default (state = initialState, action) => {
@@ -13,27 +14,20 @@ export default (state = initialState, action) => {
       return action.results
     case 'FETCHING_RESULTS_ERROR':
       return action.error
-    case 'ADD_NUMBER':
-      return state
+    case 'INC_NUMBER':
+      const incNumber = state.number + state.diff
+      return {...state, number: incNumber}
+    case 'DEC_NUMBER':
+    const decNumber = state.number - state.diff
+    return {...state, number: decNumber}
+    case 'INPUT_NUMBER':
+      return {...state, number: action.number}
     case 'SUBMIT_NUMBER':
       return state
     default:
       return state
   }
 }
-
-export const addNumber = () => {
-  return dispatch => {
-    dispatch({
-      type: 'ADD_NUMBER'
-    })
-
-    dispatch({
-      type: 'SUBMIT_NUMBER'
-    })
-  }
-}
-
 
 export const fetchResults = () => {
   return dispatch => {
@@ -51,7 +45,7 @@ export const fetchResults = () => {
       })
       .catch(error => {
         dispatch({
-          type: 'FETCH_RESULTS_errorOR',
+          type: 'FETCH_RESULTS_ERROR',
           error
         })
       })

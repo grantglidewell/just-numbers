@@ -1,37 +1,57 @@
-import React from 'react';
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { fetchResults } from '../../modules/numberStore'
+
 import './input.css';
 
-export default () => (
-  <div className="wrapper">
-    <div className="stack">
-      <input
-        type="button"
-        className="incButton hover"
-        onClick={() => console.log('+ click!')}
-        value="+"
-      />
-      <input
-        type="button"
-        className="decButton hover"
-        onClick={() => console.log('- click!')}
-        value="-"
-      />
+class Input extends Component {
+  componentDidMount() {
+    this.props.dispatch(fetchResults())
+  }
+  render() {
+    return (
+      <div className="wrapper">
+      <div className="stack">
+        <input
+          type="button"
+          className="incButton hover"
+          onClick={() => this.props.dispatch({
+            type: 'INC_NUMBER'
+          })}
+          value="+"
+        />
+        <input
+          type="button"
+          className="decButton hover"
+          onClick={() => this.props.dispatch({
+            type: 'DEC_NUMBER'
+          })}
+          value="-"
+        />
+      </div>
+      <div>
+        <input
+          type="number"
+          value={this.props.numbers.number}
+          onChange={evt => this.props.dispatch({
+            type: 'INPUT_NUMBER',
+            number: evt.target.value
+          })}
+        />
+      </div>
+      <div className="stack">
+        <input
+          type="button"
+          className="subButton"
+          onClick={() => this.props.dispatch({
+            type: 'SUBMIT_NUMBER'
+          })}
+          value="GO"
+        />
+      </div>
     </div>
-    <div>
-      <input
-        type="number"
-        value={500}
-        onKeyPress={event => (event.key === 'Enter' ? console.log('enter!') : null)}
-      />
-    </div>
-    <div className="stack">
-      <input
-        type="button"
-        className="subButton"
-        onClick={() => console.log('sub click!')}
-        value="GO"
-      />
-    </div>
-  </div>
-);
+    )
+  }
+};
 
+export default connect(state => state)(Input)
