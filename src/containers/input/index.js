@@ -32,6 +32,7 @@ class Input extends Component {
       <div>
         <input
           type="number"
+          className="numberInput"
           value={this.props.numbers.number}
           onChange={evt => this.props.dispatch({
             type: 'INPUT_NUMBER',
@@ -46,7 +47,7 @@ class Input extends Component {
           onClick={() => this.props.dispatch({
             type: 'SUBMIT_NUMBER'
           })}
-          value="GO"
+          value="ADD"
         />
       </div>
     </div>

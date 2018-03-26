@@ -4,7 +4,7 @@
   -ms-flex-pack: center;
       justify-content: center;
 }
-input[type=number] {
+.numberInput {
   height:10vh;
   width:30vw;
   font-size: 3em;

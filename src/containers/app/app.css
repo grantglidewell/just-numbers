@@ -3,7 +3,7 @@ body {
   background-image: -webkit-linear-gradient(bottom, #fbc2eb 0%, #a6c1ee 100%);
   background-image: -o-linear-gradient(bottom, #fbc2eb 0%, #a6c1ee 100%);
   background-image: linear-gradient(to top, #fbc2eb 0%, #a6c1ee 100%);
-  font-family: Roboto, 'Open Sans', 'Helvetica Neue', sans-serif;
+  font-family: 'Shrikhand', cursive;
   height: 100vh;
 }
 
@@ -17,4 +17,45 @@ body {
   -ms-flex-align: center;
   align-items: center;
   width: 100vw;
+}
+h1 {
+  font-family: 'Shrikhand', cursive;
+  font-size: 3em
+}
+header {
+  display:flex;
+  flex-direction: column;
+  padding: 30px 0px 0px 5px;
+  align-items: center
+}
+
+footer {
+  position: fixed;
+  top: 0;
+}
+
+@media only screen and (max-width: 600px) {
+  footer {
+    display: flex;
+    flex-wrap: nowrap;
+    position: fixed;
+    padding: 0;
+    bottom: 0;
+    top: auto;
+  }
+}
+
+
+
+a:link, a:visited {
+  background-color: #6f67df;
+  color: white;
+  padding: 14px 25px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+}
+
+a:hover, a:active {
+  background-color: rgb(111, 0, 255);
 }
