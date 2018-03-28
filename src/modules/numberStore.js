@@ -1,7 +1,7 @@
 const initialState = {
   results: [1, 2, 3],
   goal: false,
-  name: 'string',
+  name: 'Numbers',
   diff: 50,
   number: 500
 }
@@ -14,6 +14,8 @@ export default (state = initialState, action) => {
       return action.results
     case 'FETCHING_RESULTS_ERROR':
       return action.error
+    case 'UPDATE_PREFS':
+      return {...state, ...action.payload}
     case 'INC_NUMBER':
       const incNumber = state.number + state.diff
       return {...state, number: incNumber}

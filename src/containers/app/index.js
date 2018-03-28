@@ -1,17 +1,18 @@
 import React from "react";
 import { Route, Link } from "react-router-dom";
+
 import Preferences from "../preferences";
 import Results from "../results";
 import Input from "../input";
+import Title from "../title";
 
 import "./app.css";
 
 const App = () => (
   <div className="flex">
     <header>
-      <h1>Numbers</h1>
+      <Title />
     </header>
-
     <main>
       <Route exact path="/" component={Results} />
       <Route exact path="/input" component={Input} />
