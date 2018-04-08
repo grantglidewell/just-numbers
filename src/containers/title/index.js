@@ -1,10 +1,10 @@
-import React, { Component } from 'react'
+import React from 'react'
 import { connect } from 'react-redux'
 
-class Title extends Component {
-  render() {
-    return <h1>{this.props.numbers.name}</h1>
-  }
+const Title = props => {
+  return (
+   <h1>{props.numbers.name}</h1>
+  )
 }
 
 export default connect(state => state)(Title)

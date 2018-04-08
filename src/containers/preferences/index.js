@@ -1,45 +1,62 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 
+import { updateOptions, saveOptions } from "../../modules/numberStore";
+
+import './styles.css'
+
 class Preferences extends Component {
   onSubmit = evt => {
-    evt.preventDefault()
-    return this.props.dispatch({
-      type: 'UPDATE_PREFS',
-      payload: {
-        goal: document.forms.prefs.type.value === "goal",
-        name: document.forms.prefs.name.value,
-        diff: Number(document.forms.prefs.diff.value)
-      }
-    })
+    evt.preventDefault();
+    return this.props.dispatch(saveOptions(this.props));
+  };
+  onChange = evt => {
+    this.props.dispatch(updateOptions({ [evt.target.name]: evt.target.value }));
   };
   render() {
     return (
-      <form name="prefs" >
+      <form name="prefs" className="formWrapper">
         <label>Name</label>
-        <input type="text" name="name" placeholder={this.props.numbers.name} />
-        <br />
+        <input
+          type="text"
+          name="name"
+          value={this.props.name}
+          onChange={this.onChange}
+        />
         <label>Increment By</label>
-        <input type="number" name="diff" placeholder={this.props.numbers.diff} />
-        <br />
+        <input
+          type="number"
+          name="diff"
+          value={this.props.diff}
+          onChange={this.onChange}
+        />
         <label>Limit</label>
         <input
           type="radio"
-          value="limit"
-          name="type"
+          value={false}
+          name="goal"
+          checked={this.props.goal === 'false'}
+          onChange={this.onChange}
         />
         <label>Goal</label>
         <input
           type="radio"
-          value="goal"
-          name="type"
-          defaultChecked
+          value={true}
+          name="goal"
+          checked={this.props.goal === 'true'}
+          onChange={this.onChange}
         />
-        <br />
-        <button onClick={this.onSubmit}>Submit</button>
+        <label>Total</label>
+        <input
+          type="number"
+          name="total"
+          value={this.props.total}
+          onChange={this.onChange}
+        />
+        <button onClick={this.onSubmit}>Save</button>
       </form>
     );
   }
 }
 
-export default connect(state => state)(Preferences);
+export default connect(state => state.numbers)(Preferences);

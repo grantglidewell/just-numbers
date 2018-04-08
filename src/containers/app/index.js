@@ -20,7 +20,7 @@ const App = () => (
       <Route exact path="/preferences" component={Preferences} />
     </main>
     <footer>
-      <Link to="/preferences">Preferences</Link>
+      <Link to="/preferences">Prefs</Link>
       <Link to="/results">Results</Link>
       <Link to="/input">Input</Link>
     </footer>
