@@ -1,37 +1,47 @@
-const initialState = {
-  results: [
-    { total: 1250,
-      date: 0
-    },
-    { total: 2800,
-      date: 1
-    },
-    { total: 2300,
-      date: 2
-    },
-    { total: 1850,
-      date: 3
-    },
-    { total: 2250,
-      date: 4
-    },
-    { total: 1340,
-      date: 5
-    },
-    { total: 1340,
-      date: 6
-    },
-    { total: 1340,
-      date: 7
-    }
-  ],
-  goal: "false",
-  limit: "true",
-  total: 2400,
-  name: "Numbers",
-  diff: 50,
-  number: 500
-};
+const initialState = localStorage.getItem("justNumbersData") !== 'undefined'
+  ? JSON.parse(localStorage.getItem("justNumbersData"))
+  : {
+      results: [
+        {
+          total: 0,
+          date: 0
+        },
+        {
+          total: 0,
+          date: 1
+        },
+        {
+          total: 0,
+          date: 2
+        },
+        {
+          total: 0,
+          date: 3
+        },
+        {
+          total: 0,
+          date: 4
+        },
+        {
+          total: 0,
+          date: 5
+        },
+        {
+          total: 0,
+          date: 6
+        },
+        {
+          total: 0,
+          date: 7
+        }
+      ],
+      goal: "false",
+      limit: "true",
+      total: 2400,
+      name: "Numbers",
+      diff: 50,
+      number: 500
+    };
 
 export default (state = initialState, action) => {
   switch (action.type) {
@@ -64,28 +74,28 @@ export default (state = initialState, action) => {
   }
 };
 
-export const fetchResults = () => {
-  return dispatch => {
-    dispatch({
-      type: "FETCHING_RESULTS"
-    });
+// export const fetchResults = () => {
+//   return dispatch => {
+//     dispatch({
+//       type: "FETCHING_RESULTS"
+//     });
 
-    return fetch("urltofetch.from")
-      .then(data => {
-        const results = data.data;
-        dispatch({
-          type: "FETCH_RESULTS_SUCCESS",
-          results
-        });
-      })
-      .catch(error => {
-        dispatch({
-          type: "FETCH_RESULTS_ERROR",
-          error
-        });
-      });
-  };
-};
+//     return fetch("urltofetch.from")
+//       .then(data => {
+//         const results = data.data;
+//         dispatch({
+//           type: "FETCH_RESULTS_SUCCESS",
+//           results
+//         });
+//       })
+//       .catch(error => {
+//         dispatch({
+//           type: "FETCH_RESULTS_ERROR",
+//           error
+//         });
+//       });
+//   };
+// };
 
 export const updateOptions = payload => {
   return {
@@ -94,27 +104,12 @@ export const updateOptions = payload => {
   };
 };
 
-export const saveOptions = body => {
-  return dispatch => {
+export const saveOptions = () => {
+  return (dispatch, getState) => {
     dispatch({
       type: "SAVING_OPTIONS"
     });
-    return fetch("URLTO.POST", {
-      method: "PUT",
-      body
-    })
-      .then(data => {
-        dispatch({
-          type: "SAVING_OPTIONS_SUCCESS"
-        });
-        return data;
-      })
-      .catch(err => {
-        dispatch({
-          type: "SAVING_OPTIONS_SUCCESS"
-        });
-        throw err;
-      });
+    return localStorage.setItem("justNumbersData", getState().numbers);
   };
 };
 
@@ -126,10 +121,10 @@ export const addToToday = () => {
       if (r.date === today.getDay()) {
         return {
           date: r.date,
-          total: (r.total + number)
-        }
-      }else{
-        return r
+          total: r.total + number
+        };
+      } else {
+        return r;
       }
     });
     return dispatch({

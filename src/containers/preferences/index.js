@@ -8,7 +8,7 @@ import './styles.css'
 class Preferences extends Component {
   onSubmit = evt => {
     evt.preventDefault();
-    return this.props.dispatch(saveOptions(this.props));
+    return this.props.dispatch(saveOptions());
   };
   onChange = evt => {
     this.props.dispatch(updateOptions({ [evt.target.name]: evt.target.value }));
