@@ -1,5 +1,5 @@
-const initialState = localStorage.getItem("justNumbersData") !== 'undefined'
-  ? JSON.parse(localStorage.getItem("justNumbersData"))
+const initialState = localStorage.getItem("justNumbersData")
+  ? JSON.parse(localStorage.justNumbersData)
   : {
       results: [
         {
@@ -109,7 +109,7 @@ export const saveOptions = () => {
     dispatch({
       type: "SAVING_OPTIONS"
     });
-    return localStorage.setItem("justNumbersData", getState().numbers);
+    return localStorage.setItem("justNumbersData", JSON.stringify(getState().numbers));
   };
 };
 

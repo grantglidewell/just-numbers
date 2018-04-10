@@ -13,6 +13,7 @@ class Input extends Component {
     return this.props.dispatch(saveOptions());
   };
   render() {
+    let today = new Date().getDay()
     return (
       <div className="wrapper">
         <div className="stack">
@@ -59,7 +60,7 @@ class Input extends Component {
           />
         </div>
         <div className="displayToday">
-          {this.props.results[0].total ? this.props.results[0].total : "0"}
+          {this.props.results[today].total ? this.props.results[today].total : "0"}
         </div>
       </div>
     );

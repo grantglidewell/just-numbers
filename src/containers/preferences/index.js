@@ -54,6 +54,7 @@ class Preferences extends Component {
           onChange={this.onChange}
         />
         <button onClick={this.onSubmit}>Save</button>
+        <button onClick={() => localStorage.removeItem('justNumbersData')}>Clear All Data</button>
       </form>
     );
   }
